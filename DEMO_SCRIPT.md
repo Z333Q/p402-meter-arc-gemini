@@ -1,18 +1,31 @@
-# P402 Meter — On-Site Demo Script
+# P402 Meter — Demo Scripts
 ## April 26, 2026 · San Francisco
 
-**Allotted time:** ~5 minutes  
+---
+
+## Submission Video Script (90 seconds)
+
+See [VIDEO_SCRIPT.md](VIDEO_SCRIPT.md) for the step-by-step 90-second recording script.
+
+Quick path: click **Run Full Demo →** in the GuidedDemoStrip at the top of the page.  
+The entire demo runs in ~45 seconds. The video script above adds narration.
+
+---
+
+## On-Site Demo Script (5 minutes)
+
 **URL:** meter.p402.io  
-**Backup:** Safe Mode (NEXT_PUBLIC_DEMO_MODE=safe)
+**Backup:** Safe Mode — tiny dark bar appears at top; toggle in SafeModeBanner
 
 ---
 
 ## Setup (Before You Walk Onstage)
 
 1. Open [meter.p402.io](https://meter.p402.io) in Chrome, full screen
-2. Confirm Safe Mode banner is OFF (live mode)
+2. Confirm Safe Mode banner is a thin dark bar (not amber) — live mode is active
 3. Have [testnet.arcscan.app](https://testnet.arcscan.app) open in a second tab
 4. Have the Circle Developer Console open in a third tab (wallet sets visible)
+5. The **GuidedDemoStrip** ("Run Full Demo →") is the fastest demo path — use it
 5. Pre-load a sample prior auth packet (PDF or text) — use the Molina demo packet
 6. If live mode has any API issues, toggle `?demo=safe` in the URL immediately
 
