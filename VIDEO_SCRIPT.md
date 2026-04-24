@@ -95,7 +95,7 @@
 
 ### Recording Tips
 
-- Use safe mode if live Gemini/Arc APIs are slow: tiny dark bar appears at top, GuidedDemoStrip shows "Safe mode · Gemini bypassed"
+- Use Proof Replay mode if live Gemini/Arc APIs are slow: click "Proof Replay Mode" button in the top bar, an amber banner appears. The demo proceeds identically with pre-recorded stream and real proof references.
 - Zoom browser to 90% so all panels fit without scrolling
 - Record at 1920×1080; crop to the page content area before uploading
 - The entire demo runs in ~45 seconds via GuidedDemoStrip, the script above can run in real time
