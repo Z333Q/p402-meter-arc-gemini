@@ -1,4 +1,4 @@
-# Arc + Circle Integration — Technical Reference
+# Arc + Circle Integration, Technical Reference
 
 ## Arc Testnet
 
@@ -17,9 +17,9 @@
 
 On Arc, USDC is the gas token. This eliminates the two-asset problem that exists on every other EVM chain (ETH for gas + USDC for payment). For AI billing use cases where all pricing is USDC-denominated, this means:
 
-- **No ETH bridge required** — agents hold one asset (USDC) and can transact immediately
-- **Deterministic costs** — gas cost in USDC is predictable, not floating with ETH price
-- **Margin calculation is trivial** — AI token cost ($0.0006) + Arc gas ($0.006) = $0.0066 total, always
+- **No ETH bridge required**, agents hold one asset (USDC) and can transact immediately
+- **Deterministic costs**, gas cost in USDC is predictable, not floating with ETH price
+- **Margin calculation is trivial**, AI token cost ($0.0006) + Arc gas ($0.006) = $0.0066 total, always
 
 ---
 
@@ -69,7 +69,7 @@ When `CIRCLE_API_KEY` is not configured, the API returns a `degraded: true` resp
 
 ---
 
-## Circle Gateway — x402 API
+## Circle Gateway, x402 API
 
 **API Base:** `https://gateway-api-testnet.circle.com`  
 **Protocol:** x402 (HTTP 402 native payment standard)

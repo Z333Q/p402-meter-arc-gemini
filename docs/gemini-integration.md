@@ -1,4 +1,4 @@
-# Gemini Integration — Deep Dive
+# Gemini Integration, Deep Dive
 
 ## Overview
 
@@ -6,11 +6,11 @@ P402 Meter uses Gemini at three distinct layers. This document covers each integ
 
 ---
 
-## Layer 1: Gemini Flash — Multimodal Document Intake
+## Layer 1: Gemini Flash, Multimodal Document Intake
 
 **File:** `src/lib/meter/work-order-parser.ts`  
 **Model:** `gemini-2.0-flash`  
-**Mode:** Function calling (AUTO), multimodal input
+**Mode:** Function calling (ANY mode, forces all tools), multimodal input
 
 ### What It Does
 
@@ -57,11 +57,11 @@ const result = await model.generateContent([
 
 ### System Instruction
 
-The model is instructed to extract administrative fields only — no PHI, no clinical decisions, no patient-identifiable information. The `memberIdMasked` field specification explicitly requires last-4-only format.
+The model is instructed to extract administrative fields only, no PHI, no clinical decisions, no patient-identifiable information. The `memberIdMasked` field specification explicitly requires last-4-only format.
 
 ---
 
-## Layer 2: Gemini Flash — Streaming Review + Per-Chunk Billing
+## Layer 2: Gemini Flash, Streaming Review + Per-Chunk Billing
 
 **File:** `src/app/api/meter/chat/route.ts`  
 **Model:** `gemini-2.0-flash`  
@@ -112,7 +112,7 @@ Your job is to produce administrative review summaries based on de-identified
 prior authorization case packets.
 
 Rules:
-- ADMINISTRATIVE only — process-oriented, policy-referencing, non-clinical
+- ADMINISTRATIVE only, process-oriented, policy-referencing, non-clinical
 - Do NOT make medical decisions, diagnoses, or treatment recommendations
 - Do NOT reference specific patient names, member IDs, or any PHI
 - Frame output as a utilization management documentation artifact ready for 
@@ -136,7 +136,7 @@ Rules:
 
 ---
 
-## Layer 3: Gemini Pro — Post-Run Economic Audit
+## Layer 3: Gemini Pro, Post-Run Economic Audit
 
 **File:** `src/lib/meter/work-order-parser.ts` → `generateEconomicAudit()`  
 **File:** `src/app/api/meter/audit/route.ts`  
@@ -153,7 +153,7 @@ After the review stream completes, Gemini Pro analyzes the full session cost dat
 
 ### Why Gemini Pro (Not Flash)
 
-Flash is optimized for speed and streaming — ideal for the per-chunk billing loop. Pro is optimized for reasoning depth — ideal for cross-session economic analysis. Using both models demonstrates the full Gemini family and matches capability to task.
+Flash is optimized for speed and streaming, ideal for the per-chunk billing loop. Pro is optimized for reasoning depth, ideal for cross-session economic analysis. Using both models demonstrates the full Gemini family and matches capability to task.
 
 ### Input to Gemini Pro
 
@@ -172,11 +172,11 @@ SESSION DATA (no PHI):
   - Escrow costs: $${escrowCostUsd.toFixed(6)}
 
 Analyze:
-1. Cost structure efficiency — is the AI-to-gas ratio optimal?
-2. Arc vs ETH mainnet comparison — what would this run have cost on ETH?
-3. Arc vs Stripe — what would Stripe's minimum fee structure have charged?
-4. Margin viability — at what volume does this model become profitable?
-5. Production recommendation — what would need to change for production deployment?
+1. Cost structure efficiency, is the AI-to-gas ratio optimal?
+2. Arc vs ETH mainnet comparison, what would this run have cost on ETH?
+3. Arc vs Stripe, what would Stripe's minimum fee structure have charged?
+4. Margin viability, at what volume does this model become profitable?
+5. Production recommendation, what would need to change for production deployment?
 
 Provide a professional economic analysis suitable for a technical audience.
 `;
@@ -211,9 +211,9 @@ interface EconomicAudit {
 
 All Gemini integrations in P402 Meter were developed and validated in Google AI Studio before integration:
 
-1. **Function calling schema design** — tested `parsePriorAuthDocument` tool parameters against real prior auth packet formats
-2. **System instruction tuning** — validated the healthcare administrative system prompt for PHI avoidance and output format
-3. **Multimodal testing** — verified PDF and image intake with `inlineData` format
-4. **Economic audit prompt** — iteratively refined the Gemini Pro prompt for structured output quality
+1. **Function calling schema design**, tested `parsePriorAuthDocument` tool parameters against real prior auth packet formats
+2. **System instruction tuning**, validated the healthcare administrative system prompt for PHI avoidance and output format
+3. **Multimodal testing**, verified PDF and image intake with `inlineData` format
+4. **Economic audit prompt**, iteratively refined the Gemini Pro prompt for structured output quality
 
 The production integration uses the `@google/generative-ai` SDK directly.

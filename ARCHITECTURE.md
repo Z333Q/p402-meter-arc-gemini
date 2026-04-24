@@ -1,10 +1,10 @@
-# P402 Meter — Technical Architecture
+# P402 Meter, Technical Architecture
 
 ## System Overview
 
 P402 Meter is a Next.js 15 application deployed at `meter.p402.io` (Vercel, standalone output). It demonstrates usage-based AI compute billing at token granularity on Arc testnet.
 
-The core thesis: **a ledger event fires for every Gemini output token chunk, and every ledger event settles via the Circle Gateway x402 API on Arc.** This produces 55+ onchain transactions per prior authorization review — the first live proof that per-token AI billing is economically viable.
+The core thesis: **a ledger event fires for every Gemini output token chunk, and every ledger event settles via the Circle Gateway x402 API on Arc.** This produces 55+ onchain transactions per prior authorization review, the first live proof that per-token AI billing is economically viable.
 
 ---
 
@@ -32,15 +32,15 @@ Response: { workOrder, sessionId, packetSummary }
 ```
 
 **HealthcareExtract fields:**
-- `payerName` — payer organization
-- `memberIdMasked` — masked member ID (last 4 only, e.g. `***-**-1234`)
-- `providerName` — requesting provider
-- `procedureRequested` — administrative procedure description
-- `diagnosisSummary` — non-clinical category summary
-- `urgencyLevel` — `routine | urgent | emergent`
-- `caseType` — `prior_auth | utilization_review | appeals | specialist_consult`
-- `extractedConfidence` — 0–1 confidence score
-- `requiresSpecialistReview` — boolean escalation flag
+- `payerName`, payer organization
+- `memberIdMasked`, masked member ID (last 4 only, e.g. `***-**-1234`)
+- `providerName`, requesting provider
+- `procedureRequested`, administrative procedure description
+- `diagnosisSummary`, non-clinical category summary
+- `urgencyLevel`, `routine | urgent | emergent`
+- `caseType`, `prior_auth | utilization_review | appeals | specialist_consult`
+- `extractedConfidence`, 0–1 confidence score
+- `requiresSpecialistReview`, boolean escalation flag
 
 ### Phase 2: Session Funding (Circle Developer-Controlled Wallet)
 
@@ -102,10 +102,10 @@ Gemini Pro (gemini-2.0-pro-exp)
         ↓
 EconomicAudit {
   costBreakdown: { aiTokenCostUsd, routingFeeUsd, arcGasCostUsd, escrowCostUsd }
-  comparisonStripeUsd    — what Stripe minimum would have charged
-  comparisonEthMainnetUsd — equivalent ETH mainnet gas
-  savingVsEthMainnetPct  — >99.7% in typical runs
-  recommendation          — Gemini Pro narrative on margin viability
+  comparisonStripeUsd   , what Stripe minimum would have charged
+  comparisonEthMainnetUsd, equivalent ETH mainnet gas
+  savingVsEthMainnetPct , >99.7% in typical runs
+  recommendation         , Gemini Pro narrative on margin viability
 }
 ```
 
@@ -225,7 +225,7 @@ CREATE TABLE meter_ledger_events (
 | Gas cost (typical) | $0.006 USDC per transaction |
 | Finality | Sub-second, deterministic |
 
-**Why USDC-as-gas matters:** On every other EVM chain, gas is paid in the chain's native token (ETH, MATIC, etc.) which requires users to hold a separate asset just to transact. Arc eliminates this friction entirely — if you have USDC, you can transact. For AI billing use cases where all pricing is USDC-denominated, this is not just a UX improvement — it's what makes the math work.
+**Why USDC-as-gas matters:** On every other EVM chain, gas is paid in the chain's native token (ETH, MATIC, etc.) which requires users to hold a separate asset just to transact. Arc eliminates this friction entirely, if you have USDC, you can transact. For AI billing use cases where all pricing is USDC-denominated, this is not just a UX improvement, it's what makes the math work.
 
 ---
 

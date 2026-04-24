@@ -1,4 +1,4 @@
-# P402 Meter — Real-Time Per-Token AI Billing on Arc
+# P402 Meter, Real-Time Per-Token AI Billing on Arc
 
 <div align="center">
 
@@ -11,7 +11,7 @@
 **Agentic Commerce on Arc Hackathon**
 
 🏆 **Primary Track:** Best Gateway-Based Micropayments Integration  
-🤖 **Google Track:** Best Use of Gemini Models + Google AI Studio ($40K GCP Credits)  
+🤖 **Google Track:** Best Use of Gemini Models + Google AI Studio  
 🔗 **Bonus Track:** Best Autonomous Commerce Application (A2A Specialist Escrow)
 
 </div>
@@ -20,15 +20,15 @@
 
 > **"Every AI token has a price. For the first time, it settles on-chain in real time."**
 >
-> P402 Meter is the first live proof that per-token AI billing is economically viable — 55+ onchain events per prior authorization review, $0.006 per action, powered by Gemini, settled by Arc.
+> P402 Meter is the first live proof that per-token AI billing is economically viable, 55+ onchain events per prior authorization review, $0.006 per action, powered by Gemini, settled by Arc.
 
 ---
 
 ## Live Demo
 
-**→ [meter.p402.io](https://meter.p402.io)** — running live on Arc testnet  
-**→ [meter.p402.io/about](https://meter.p402.io/about)** — full project overview  
-**→ [testnet.arcscan.app](https://testnet.arcscan.app)** — verify every transaction on-chain
+**→ [meter.p402.io](https://meter.p402.io)**, running live on Arc testnet  
+**→ [meter.p402.io/about](https://meter.p402.io/about)**, full project overview  
+**→ [testnet.arcscan.app](https://testnet.arcscan.app)**, verify every transaction on-chain
 
 Upload a prior authorization packet (or use Demo Mode), watch Gemini extract it in real time, and see every token chunk priced and settled on Arc. No batching. No minimums. No Stripe required.
 
@@ -48,16 +48,16 @@ This is not a theoretical benchmark. Every number in this table was generated li
 
 ## The Problem: AI Billing Doesn't Exist
 
-Every AI inference model charges by the token. Every token has a measurable cost. Yet today, **not a single production AI system settles that cost in real time at the token level** — because no payment rail made it economically possible.
+Every AI inference model charges by the token. Every token has a measurable cost. Yet today, **not a single production AI system settles that cost in real time at the token level**, because no payment rail made it economically possible.
 
 | Why It Hasn't Been Built | The Math |
 |---|---|
-| Ethereum mainnet gas | $2.85/tx — more than the AI work itself |
-| Stripe processing | $0.30 minimum — requires batching 300+ micro-actions |
-| Base L2 | ~$0.02/tx — still 3× the token cost |
-| Traditional ACH/wire | T+1 settlement — defeats real-time pricing entirely |
+| Ethereum mainnet gas | $2.85/tx, more than the AI work itself |
+| Stripe processing | $0.30 minimum, requires batching 300+ micro-actions |
+| Base L2 | ~$0.02/tx, still 3× the token cost |
+| Traditional ACH/wire | T+1 settlement, defeats real-time pricing entirely |
 
-**Arc changes the equation.** USDC is Arc's native gas token. Settlement costs $0.006 per transaction. For the first time, every individual token chunk can settle individually — making per-token AI billing economically viable with a real margin.
+**Arc changes the equation.** USDC is Arc's native gas token. Settlement costs $0.006 per transaction. For the first time, every individual token chunk can settle individually, making per-token AI billing economically viable with a real margin.
 
 ---
 
@@ -71,7 +71,7 @@ Healthcare prior authorization is the hardest possible proof. It requires:
 - **Real-time streaming AI review** with per-chunk billing
 - **Compliance governance** (no PHI, administrative-only output)
 - **Human-in-the-loop approval** before any release
-- **Auditability** — every decision provable on-chain
+- **Auditability**, every decision provable on-chain
 
 If per-token billing works here, it works everywhere.
 
@@ -117,7 +117,7 @@ Base L2 (typical)     ~$0.020             ~$0.0003         ~$0.020           ✗
 Arc Testnet           $0.006 USDC         ~$0.0003         ~$0.0063          ✓
 ```
 
-**Stripe's $0.30 minimum means you must batch 300+ sub-cent actions** before billing them — destroying the real-time model entirely. Ethereum gas at $2.85/tx makes each settlement more expensive than the AI work itself. Arc uses USDC as native gas at $0.006/tx — the only settlement layer where every token can settle individually.
+**Stripe's $0.30 minimum means you must batch 300+ sub-cent actions** before billing them, destroying the real-time model entirely. Ethereum gas at $2.85/tx makes each settlement more expensive than the AI work itself. Arc uses USDC as native gas at $0.006/tx, the only settlement layer where every token can settle individually.
 
 ---
 
@@ -125,7 +125,7 @@ Arc Testnet           $0.006 USDC         ~$0.0003         ~$0.0063          ✓
 
 P402 Meter uses Gemini at three distinct layers, each demonstrating a different capability:
 
-### Layer 1: Gemini Flash — Multimodal Document Intake
+### Layer 1: Gemini Flash, Multimodal Document Intake
 
 ```typescript
 // lib/meter/work-order-parser.ts
@@ -143,13 +143,13 @@ const result = await model.generateContent([
 ```
 
 **Three function-calling tools:**
-- `parsePriorAuthDocument` — extracts payer, member (masked), procedure, urgency level, case type, confidence score, specialist review flag
-- `createReviewSession` — determines budget cap, routing mode, policy reference
-- `addLedgerEstimate` — records opening cost estimate for governance tracking
+- `parsePriorAuthDocument`, extracts payer, member (masked), procedure, urgency level, case type, confidence score, specialist review flag
+- `createReviewSession`, determines budget cap, routing mode, policy reference
+- `addLedgerEstimate`, records opening cost estimate for governance tracking
 
-**Output:** Structured `HealthcareExtract` — urgency color coded (emergent=red, urgent=amber, routine=green), confidence percentage, specialist escalation flag.
+**Output:** Structured `HealthcareExtract`, urgency color coded (emergent=red, urgent=amber, routine=green), confidence percentage, specialist escalation flag.
 
-### Layer 2: Gemini Flash — Streaming Review + Per-Chunk Billing
+### Layer 2: Gemini Flash, Streaming Review + Per-Chunk Billing
 
 ```typescript
 // app/api/meter/chat/route.ts
@@ -176,7 +176,7 @@ for await (const chunk of result.stream) {
 
 **Result:** Every token chunk is priced, emitted via SSE, and settled on Arc. The live demo shows the cost ticker incrementing in real time with 6 decimal precision.
 
-### Layer 3: Gemini Pro — Post-Run Economic Audit
+### Layer 3: Gemini Pro, Post-Run Economic Audit
 
 ```typescript
 // app/api/meter/audit/route.ts
@@ -192,7 +192,7 @@ Analyze: (1) cost structure efficiency, (2) arc vs ETH savings,
 (3) margin viability, (4) recommendations for production deployment.`;
 ```
 
-**Output:** Full cost breakdown (AI tokens / routing fee / Arc gas / escrow), comparison against Stripe and ETH mainnet, Gemini Pro narrative on margin viability. Runs only after the review stream completes — no PHI ever touches the model.
+**Output:** Full cost breakdown (AI tokens / routing fee / Arc gas / escrow), comparison against Stripe and ETH mainnet, Gemini Pro narrative on margin viability. Runs only after the review stream completes, no PHI ever touches the model.
 
 ### Google AI Studio
 
@@ -204,7 +204,7 @@ Development and prompt engineering for all three Gemini layers was done in Googl
 
 ### 1. Developer-Controlled Wallets (ARC-TESTNET)
 
-Every session provisions a fresh Circle Developer-Controlled Wallet on Arc testnet. This is visible in the Circle Developer Console — creating a real, auditable wallet set for each review session.
+Every session provisions a fresh Circle Developer-Controlled Wallet on Arc testnet. This is visible in the Circle Developer Console, creating a real, auditable wallet set for each review session.
 
 ```typescript
 // app/api/meter/fund/route.ts
@@ -229,7 +229,7 @@ const walletRes = await fetch(`${baseUrl}/wallets`, {
 
 **What judges see:** A new wallet entry in the Circle Developer Console for every run of the demo. Each wallet is named with the session ID and can be correlated to the onchain transaction history.
 
-### 2. Circle Gateway — x402 Micropayments API
+### 2. Circle Gateway, x402 Micropayments API
 
 Settlement of each per-token ledger event is routed through the Circle Gateway x402 API on Arc testnet.
 
@@ -238,7 +238,7 @@ POST https://gateway-api-testnet.circle.com/gateway/v1/x402/verify
 POST https://gateway-api-testnet.circle.com/gateway/v1/x402/settle
 ```
 
-**Protocol:** x402 — the open payment standard co-maintained by Coinbase Developer Platform. HTTP 402 "Payment Required" becomes a first-class settlement primitive. Each ledger event is an `exact` scheme payment: the session wallet signs an EIP-3009 `TransferWithAuthorization`, the Gateway verifies the signature, and settles the USDC transfer on Arc.
+**Protocol:** x402, the open payment standard co-maintained by Coinbase Developer Platform. HTTP 402 "Payment Required" becomes a first-class settlement primitive. Each ledger event is an `exact` scheme payment: the session wallet signs an EIP-3009 `TransferWithAuthorization`, the Gateway verifies the signature, and settles the USDC transfer on Arc.
 
 ### 3. USDC on Arc (Native Gas)
 
@@ -308,9 +308,9 @@ All settlement denominated in USDC. Arc's unique property: USDC IS the native ga
 |---|---|
 | Framework | Next.js 15 (App Router, standalone output) |
 | Language | TypeScript 5.9 (strict, `noUncheckedIndexedAccess`) |
-| AI — Intake | Gemini 2.0 Flash (multimodal, function calling) |
-| AI — Review | Gemini 2.0 Flash (streaming, per-chunk billing) |
-| AI — Audit | Gemini 2.0 Pro (economic analysis, cross-run) |
+| AI, Intake | Gemini 3.1 Flash (multimodal, function calling) |
+| AI, Review | Gemini 3.1 Flash (streaming, per-chunk billing) |
+| AI, Audit | Gemini 3.1 Pro (economic analysis, cross-run) |
 | Payment Protocol | x402 (HTTP 402 native payment standard) |
 | Settlement Layer | Arc Testnet (USDC-as-gas, EVM-compatible) |
 | Wallet Infrastructure | Circle Developer-Controlled Wallets (ARC-TESTNET) |
@@ -338,7 +338,7 @@ GOOGLE_API_KEY=          # Gemini API key (Google AI Studio)
 CIRCLE_API_KEY=          # Circle developer API key
 NANOPAYMENTS_API_BASE=https://gateway-api-testnet.circle.com
 
-# Optional — app works in Safe/Demo mode without these
+# Optional, app works in Safe/Demo mode without these
 DATABASE_URL=            # PostgreSQL (Neon recommended)
 NEXTAUTH_SECRET=         # NextAuth signing secret
 ```
@@ -388,20 +388,20 @@ The `ArcProof` drawer on the demo page shows all transaction hashes with direct 
 
 > *This section fulfills the required Circle Product Feedback field. The most detailed responses are eligible for the $500 USDC Product Feedback Incentive.*
 
-### Developer-Controlled Wallets — ARC-TESTNET
+### Developer-Controlled Wallets, ARC-TESTNET
 
 **What worked well:**
-The wallet creation API is clean and idiomatic. Two-step flow (walletSet → wallet) made per-session provisioning straightforward. The `metadata` field (`name`, `refId`) is exactly right for correlating Circle Console entries to application sessions — critical for demo visibility. The `ARC-TESTNET` blockchain identifier worked immediately without any additional configuration.
+The wallet creation API is clean and idiomatic. Two-step flow (walletSet → wallet) made per-session provisioning straightforward. The `metadata` field (`name`, `refId`) is exactly right for correlating Circle Console entries to application sessions, critical for demo visibility. The `ARC-TESTNET` blockchain identifier worked immediately without any additional configuration.
 
 **What could be improved:**
 1. **Wallet funding automation**: In production, we'd need to auto-fund the session wallet with testnet USDC immediately after creation. A `fundWallet` endpoint or faucet integration in the wallet creation response would eliminate the manual step.
 2. **Session-scoped policy primitives**: For the billing use case, we want to attach a spending cap directly to the wallet at creation time (e.g., `maxSpendUsd: 0.50`). Today we implement this in application logic, but a Circle-native spending policy would make the guarantee cryptographic.
 3. **Webhook on wallet events**: Real-time webhook notification when a wallet's USDC balance changes would let us update the UI without polling.
 
-### Circle Gateway — x402 API
+### Circle Gateway, x402 API
 
 **What worked well:**
-The x402 protocol maps perfectly to the per-token billing model. `POST /gateway/v1/x402/verify` + `/settle` is the right split — verify at billing event creation, settle async. The USDC-as-gas property of Arc means settlement cost is deterministic ($0.006), which makes margin calculation trivial.
+The x402 protocol maps perfectly to the per-token billing model. `POST /gateway/v1/x402/verify` + `/settle` is the right split, verify at billing event creation, settle async. The USDC-as-gas property of Arc means settlement cost is deterministic ($0.006), which makes margin calculation trivial.
 
 **What could be improved:**
 1. **Batch settle endpoint**: For 55+ events per review session, a `POST /gateway/v1/x402/settle/batch` endpoint accepting an array of signed authorizations would reduce latency and simplify the implementation.
@@ -427,7 +427,7 @@ This is the only infrastructure stack that makes per-token AI billing viable. Th
 | Circle Gateway x402 used | ✓ Every ledger event settles via `/gateway/v1/x402/settle` |
 | Novel use case | ✓ First per-token AI billing for healthcare prior auth |
 
-### Google Gemini Prize ($40K GCP Credits)
+### Google Track: Best Use of Gemini Models + Google AI Studio
 
 | Requirement | P402 Meter |
 |---|---|
@@ -436,7 +436,7 @@ This is the only infrastructure stack that makes per-token AI billing viable. Th
 | Multimodal | ✓ PDF, JPEG, PNG, WebP → structured healthcare extract |
 | Streaming | ✓ SSE with per-chunk billing events |
 | Google AI Studio | ✓ All prompts and tool schemas developed in AI Studio |
-| Novel AI application | ✓ Per-token billing — Gemini bills itself in USDC |
+| Novel AI application | ✓ Per-token billing, Gemini bills itself in USDC |
 | Healthcare / high-impact use case | ✓ $31B prior authorization problem |
 
 ### Best Autonomous Commerce Application (Bonus)
@@ -451,7 +451,7 @@ This is the only infrastructure stack that makes per-token AI billing viable. Th
 
 ## Team
 
-**Z333Q** — Full-stack engineer, P402 Protocol  
+**Z333Q**, Full-stack engineer, P402 Protocol  
 GitHub: [github.com/Z333Q](https://github.com/Z333Q)
 
 **Main implementation repo:** [github.com/Z333Q/p402-router](https://github.com/Z333Q/p402-router) (branch: `feat/arc-meter-healthcare-payerops`)
@@ -460,7 +460,7 @@ GitHub: [github.com/Z333Q](https://github.com/Z333Q)
 
 ## License
 
-MIT — open source, free to use, fork, and build upon.
+MIT, open source, free to use, fork, and build upon.
 
 ---
 

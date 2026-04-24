@@ -1,4 +1,4 @@
-# P402 Meter — Submission Video Script
+# P402 Meter, Submission Video Script
 ## 90-Second Screen Recording
 
 **Track:** Usage-Based Compute Billing  
@@ -8,36 +8,36 @@
 
 ---
 
-### [0:00–0:15] — Hook (voiceover while screen loads)
+### [0:00–0:15], Hook (voiceover while screen loads)
 
 > "Healthcare prior authorization costs payers $150 per case in manual review.  
-> AI can do it in seconds — but only if the billing keeps up.  
+> AI can do it in seconds, but only if the billing keeps up.  
 > Stripe can't. Ethereum can't. Arc can."
 
-**Screen:** meter.p402.io home — headline visible: *"AI Thinking Has a Price. Watch It Settle on Arc."*
+**Screen:** meter.p402.io home, headline visible: *"AI Thinking Has a Price. Watch It Settle on Arc."*
 
 ---
 
-### [0:15–0:25] — One-Click Demo
+### [0:15–0:25], One-Click Demo
 
 > "I'm going to click one button and run a full live prior authorization review."
 
 **Action:** Click **Run Full Demo →** in the GuidedDemoStrip.
 
-**Screen:** Progress strip animates — `○ Packet → ⬤ Extract → ○ Billing`
+**Screen:** Progress strip animates, `○ Packet → ⬤ Extract → ○ Billing`
 
-> "Gemini Flash is parsing the packet — text, PDF, images — right now."
+> "Gemini Flash is parsing the packet, text, PDF, images, right now."
 
 ---
 
-### [0:25–0:45] — Live Streaming Billing
+### [0:25–0:45], Live Streaming Billing
 
-**Screen:** WorkOrderCard populates — tool trace visible (parsePriorAuthDocument, createReviewSession, addLedgerEstimate).
+**Screen:** WorkOrderCard populates, tool trace visible (parsePriorAuthDocument, createReviewSession, addLedgerEstimate).
 
-> "Three Gemini function calls. Payer name, procedure, urgency level — extracted.  
+> "Three Gemini function calls. Payer name, procedure, urgency level, extracted.  
 > A Circle Developer-Controlled Wallet just opened on Arc testnet for this session."
 
-**Screen:** LedgerPane rows start appearing — costs in yellow/cyan/green.
+**Screen:** LedgerPane rows start appearing, costs in yellow/cyan/green.
 
 > "Watch the ledger. Every row is an Arc transaction.  
 > AI Events in yellow. Settlement in green. Routing fees in cyan.  
@@ -45,23 +45,23 @@
 
 ---
 
-### [0:45–1:00] — Arc Proof
+### [0:45–1:00], Arc Proof
 
-**Screen:** ArcProofDrawer — summary grid shows event count climbing toward 55+.
+**Screen:** ArcProofDrawer, summary grid shows event count climbing toward 55+.
 
 > "Fifty-five onchain events. Average cost: under half a cent each.  
-> Total session cost: under a dollar — including Arc settlement."
+> Total session cost: under a dollar, including Arc settlement."
 
-**Action:** Click one `arcTxHash` link — new tab opens to testnet.arcscan.app.
+**Action:** Click one `arcTxHash` link, new tab opens to testnet.arcscan.app.
 
 > "That transaction settled on Arc 30 seconds ago. $0.006 USDC.  
-> On Ethereum mainnet, that same transfer would be $2.85 — 475× more expensive."
+> On Ethereum mainnet, that same transfer would be $2.85, 475× more expensive."
 
 ---
 
-### [1:00–1:15] — The Margin Math
+### [1:00–1:15], The Margin Math
 
-**Screen:** MarginExplanationPanel — formula row visible.
+**Screen:** MarginExplanationPanel, formula row visible.
 
 > "The math: AI cost plus Arc settlement fee is under $0.01 per review action.  
 > At $150 per case, even a 1% margin is profitable at this price point.  
@@ -69,15 +69,15 @@
 
 ---
 
-### [1:15–1:30] — Circle + Arc Stack
+### [1:15–1:30], Circle + Arc Stack
 
-**Screen:** CircleInfraStrip — all 4 cells lit green (DCW, Nanopayments, Gateway, Arc).
+**Screen:** CircleInfraStrip, all 4 cells lit green (DCW, Nanopayments, Gateway, Arc).
 
 > "The stack: Circle Developer-Controlled Wallets provision per-session spending accounts.  
 > Circle Gateway handles x402 payment verification.  
 > Circle Nanopayments settles sub-cent USDC on Arc.  
 > ERC-8183 smart contracts handle specialist agent escrow.  
-> This is the Agentic Economy — live."
+> This is the Agentic Economy, live."
 
 ---
 
@@ -98,4 +98,4 @@
 - Use safe mode if live Gemini/Arc APIs are slow: tiny dark bar appears at top, GuidedDemoStrip shows "Safe mode · Gemini bypassed"
 - Zoom browser to 90% so all panels fit without scrolling
 - Record at 1920×1080; crop to the page content area before uploading
-- The entire demo runs in ~45 seconds via GuidedDemoStrip — the script above can run in real time
+- The entire demo runs in ~45 seconds via GuidedDemoStrip, the script above can run in real time
