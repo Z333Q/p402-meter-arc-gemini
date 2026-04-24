@@ -8,11 +8,12 @@
 [![Gemini](https://img.shields.io/badge/Gemini-Flash%20%2B%20Pro-4285F4?style=for-the-badge&labelColor=000000)](https://ai.google.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-white?style=for-the-badge&labelColor=000000)](LICENSE)
 
-**Agentic Commerce on Arc Hackathon**
+**Agentic Economy on Arc Hackathon**
 
-🏆 **Primary Track:** Best Gateway-Based Micropayments Integration  
-🤖 **Google Track:** Best Use of Gemini Models + Google AI Studio  
-🔗 **Bonus Track:** Best Autonomous Commerce Application (A2A Specialist Escrow)
+🏆 **Primary Track:** Usage-Based Compute Billing  
+📊 **Secondary Track:** B2B FinOps & Compliance  
+🤖 **Google Prize:** Best Use of Gemini Models  
+🔗 **Bonus Alignment:** Agent-to-Agent Payment Loop (A2A Specialist Escrow)
 
 </div>
 
@@ -346,16 +347,24 @@ NEXTAUTH_SECRET=         # NextAuth signing secret
 ### Start
 
 ```bash
-git clone https://github.com/Z333Q/p402-meter-arc-gemini
-cd p402-meter-arc-gemini
+# 1. Clone the main implementation
+git clone https://github.com/Z333Q/p402-router.git
+cd p402-router
 
-# Install from the main implementation repo
-# (this repo contains source references; main deployment is at p402-router)
-# See src/ directory for all meter-specific source files
-
+# 2. Install dependencies
 npm install
+
+# 3. Configure environment
+cp .env.example .env.local
+# Add: GOOGLE_API_KEY=your_key (required for live Gemini)
+# Add: ARC_PRIVATE_KEY=your_key (required for live Arc settlement)
+# Other keys optional — app runs in Proof Replay mode without them
+
+# 4. Start development server
 npm run dev
-# → http://localhost:3000/meter
+
+# 5. Open the demo
+open http://localhost:3000/meter
 ```
 
 ### Safe Mode (Demo without API keys)
@@ -438,14 +447,47 @@ This is the only infrastructure stack that makes per-token AI billing viable. Th
 | Google AI Studio | ✓ All prompts and tool schemas developed in AI Studio |
 | Novel AI application | ✓ Per-token billing, Gemini bills itself in USDC |
 | Healthcare / high-impact use case | ✓ $31B prior authorization problem |
+| FunctionCallingMode.ANY | ✓ Forces all 3 tools to always fire, guaranteed structured output |
 
-### Best Autonomous Commerce Application (Bonus)
+### B2B FinOps & Compliance
+
+| Requirement | P402 Meter |
+|---|---|
+| Policy enforcement | ✓ Budget cap, approval gate, escalation logic per work order |
+| Audit-ready records | ✓ Every ledger event timestamped, cost attributed, proof ref anchored |
+| Real-time visibility | ✓ SSE Ledger panel updates per-chunk during AI generation |
+| Compliance boundary | ✓ URAC-aligned system instruction, NCQA UM documentation standards |
+| Human approval gate | ✓ Every session requires manual reviewer sign-off before release |
+
+### Agent-to-Agent Payment Loop (Bonus Alignment)
 
 | Requirement | P402 Meter |
 |---|---|
 | Agent-to-agent payment loop | ✓ P402 agent → specialist agent via ERC-8183 escrow |
 | Autonomous billing | ✓ No human involvement in per-token settlement |
 | Onchain treasury logic | ✓ Budget cap enforced per session, tracked per ledger event |
+
+### Usage-Based Compute Billing
+
+| Requirement | P402 Meter |
+|---|---|
+| Per-token billing | ✓ Every token chunk priced at $0.0000006, ledger event emitted per chunk |
+| Real-time settlement | ✓ Arc settles each chunk within the same SSE stream |
+| Budget governance | ✓ Per-session budget cap, approval gate before release |
+| Audit trail | ✓ Every event anchored to a proof ref, verifiable on ArcScan |
+| Cost transparency | ✓ 6-decimal cost ticker in UI, live reconcile at session close |
+
+---
+
+## Proof Replay vs Live Mode
+
+| Mode | Trigger | Gemini | Circle Wallet | Arc Settlement |
+|---|---|---|---|---|
+| Live | GOOGLE_API_KEY + ARC_PRIVATE_KEY set | Real API call | Real DCW created | Real USDC transfer + tx hash |
+| Proof Replay | Default (no keys needed) | Pre-recorded stream | Simulated | Proof refs anchored to session |
+| Quota Fallback | Gemini free-tier limit hit | Auto-switches | Simulated | Proof refs |
+
+The public demo at meter.p402.io runs in Proof Replay mode by default. To run live, configure GOOGLE_API_KEY and ARC_PRIVATE_KEY in .env.local. The architecture, ledger events, cost structure, and proof references are identical across all modes.
 
 ---
 
@@ -466,7 +508,7 @@ MIT, open source, free to use, fork, and build upon.
 
 <div align="center">
 
-**Built for the Agentic Commerce on Arc Hackathon · April 2026**
+**Built for the Agentic Economy on Arc Hackathon · April 2026**
 
 *Prior authorization is the hardest workflow in healthcare. If per-token AI billing works here, it works everywhere.*
 
